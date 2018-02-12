@@ -3,7 +3,7 @@ package com.example.kilda.movies;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class movieDetail extends AppCompatActivity {
+public class MovieDetail extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

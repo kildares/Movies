@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    <TextView
-        android:id="@+id/tv_movie_name"
-        />
-    <TextView android:id="@+id/tv_movie_year"/>
 
     <ImageView
         android:id="@+id/view_movie_img"
@@ -15,6 +11,13 @@
         android:layout_height="wrap_content"
         />
 
-    <TextView android:id="@+id/tv_movie_synopsis"
-        />
-</GridLayout>
+
+    <TextView
+        android:id="@+id/tv_movie_name"
+        android:text="@string/mockName"
+        android:textSize="8dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+
+</LinearLayout>
