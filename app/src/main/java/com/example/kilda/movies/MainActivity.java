@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         protected void onPostExecute(String[] weatherData) {
             loadingBar.setVisibility(View.INVISIBLE);
             if (weatherData != null) {
-                showMovieListView();
+                showMovieDataView();
                 movieListAdapter.setMovieData(weatherData);
             } else {
                 showErrorMessage();

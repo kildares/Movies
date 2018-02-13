@@ -6,6 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by kilda on 2/12/2018.
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>{
 
     private final MovieListAdapterOnClickHandler movieListAdapterOnClickHandler;
+    private String[] movies;
 
     public MovieListAdapter(MovieListAdapterOnClickHandler clickHandler)
     {
@@ -37,26 +42,41 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     @Override
     public void onBindViewHolder(MovieListViewHolder holder, int position) {
-
+        String movieImg = movies[position];
+        holder.movieImg.setImageResource();
+        Picasso.with().load()
     }
 
     @Override
     public int getItemCount()
     {
-        return 0;
+        if(movies == null)
+            return 0;
+        return movies.length;
     }
 
     public class MovieListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public final TextView movieName;
+        public final ImageView movieImg;
 
         public MovieListViewHolder(View itemView) {
             super(itemView);
-
+            this.movieName = (TextView) itemView.findViewById(R.id.tv_movie_name);
+            this.movieImg = (ImageView) itemView.findViewById(R.id.view_movie_img);
         }
 
         @Override
         public void onClick(View view) {
-
+            int adapterPosition = getAdapterPosition();
+            String movie = movies[adapterPosition];
+            movieListAdapterOnClickHandler.onClick(movie);
         }
+    }
+
+    public void setMovieData(String[] movieData)
+    {
+        this.movies = movieData;
+        notifyDataSetChanged();
     }
 
 
