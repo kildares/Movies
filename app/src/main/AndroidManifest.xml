@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kilda.movies">
+    package="com.example.kilda.myMovies">
 
     <application
         android:allowBackup="true"

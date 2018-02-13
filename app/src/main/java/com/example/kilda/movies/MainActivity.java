@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.kilda.movies.utilities.MoviesJsonUtils;
 import com.example.kilda.movies.utilities.NetworkUtils;
 
 import java.io.IOException;
@@ -64,11 +65,12 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         startActivity(intent);
     }
 
-    public class FetchMoviesTask extends AsyncTask<String,String,String>
+    public class FetchMoviesTask extends AsyncTask<Void, Void,MyMovie[]>
     {
         @Override
-        protected String doInBackground(String... params) {
+        protected MyMovie[] doInBackground(Void... params) {
 
+            MyMovie[] myMovies = null;
             try {
                 String jsonResponse = null;
                 if(TmdbApi.IsTopRated())
@@ -76,11 +78,12 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
                 else{
                     jsonResponse = NetworkUtils.getResponseFromHttpUrl(TmdbApi.buildPopularRequestURL());
                 }
-                return jsonResponse;
+                myMovies = MoviesJsonUtils.parseJSonToMovies(jsonResponse);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return null;
+            return myMovies;
         }
 
         @Override
@@ -91,11 +94,11 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         }
 
         @Override
-        protected void onPostExecute(Movie[] movies) {
+        protected void onPostExecute(MyMovie[] myMovies) {
             loadingBar.setVisibility(View.INVISIBLE);
-            if (movies != null) {
+            if (myMovies != null) {
                 showMovieDataView();
-                movieListAdapter.setMovieData(movies);
+                movieListAdapter.setMovieData(myMovies);
             } else {
                 showErrorMessage();
             }

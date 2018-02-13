@@ -1,7 +1,6 @@
 package com.example.kilda.movies;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import com.squareup.picasso.Picasso;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>{
 
     private final MovieListAdapterOnClickHandler movieListAdapterOnClickHandler;
-    private Movie[] movies;
+    private MyMovie[] myMovies;
 
     public MovieListAdapter(MovieListAdapterOnClickHandler clickHandler)
     {
@@ -27,7 +26,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     public interface MovieListAdapterOnClickHandler
     {
-        void onClick(String movie);
+        void onClick(MyMovie movie);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     @Override
     public void onBindViewHolder(MovieListViewHolder holder, int position) {
-        String movieImg = movies[position].getImage();
+        String movieImg = myMovies[position].getImage();
         holder.movieImg.setImageResource();
         Picasso.with().load();
     }
@@ -50,9 +49,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     @Override
     public int getItemCount()
     {
-        if(movies == null)
+        if(myMovies == null)
             return 0;
-        return movies.length;
+        return myMovies.length;
     }
 
     public class MovieListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -68,14 +67,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            String movie = movies[adapterPosition];
+            MyMovie movie = myMovies[adapterPosition];
             movieListAdapterOnClickHandler.onClick(movie);
         }
     }
 
-    public void setMovieData(Movie[] movieData)
+    public void setMovieData(MyMovie[] myMovieData)
     {
-        this.movies = movieData;
+        this.myMovies = myMovieData;
         notifyDataSetChanged();
     }
 
