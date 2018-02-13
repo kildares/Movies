@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>{
 
     private final MovieListAdapterOnClickHandler movieListAdapterOnClickHandler;
-    private String[] movies;
+    private Movie[] movies;
 
     public MovieListAdapter(MovieListAdapterOnClickHandler clickHandler)
     {
@@ -42,9 +42,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     @Override
     public void onBindViewHolder(MovieListViewHolder holder, int position) {
-        String movieImg = movies[position];
+        String movieImg = movies[position].getImage();
         holder.movieImg.setImageResource();
-        Picasso.with().load()
+        Picasso.with().load();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         }
     }
 
-    public void setMovieData(String[] movieData)
+    public void setMovieData(Movie[] movieData)
     {
         this.movies = movieData;
         notifyDataSetChanged();

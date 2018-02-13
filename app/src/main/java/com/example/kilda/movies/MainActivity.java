@@ -1,6 +1,5 @@
 package com.example.kilda.movies;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.kilda.movies.utilities.NetworkUtils;
+
+import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity implements MovieListAdapter.MovieListAdapterOnClickHandler{
 
@@ -65,6 +69,17 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         @Override
         protected String doInBackground(String... params) {
 
+            try {
+                String jsonResponse = null;
+                if(TmdbApi.IsTopRated())
+                    jsonResponse = NetworkUtils.getResponseFromHttpUrl(TmdbApi.buildTopRatedRequestURL());
+                else{
+                    jsonResponse = NetworkUtils.getResponseFromHttpUrl(TmdbApi.buildPopularRequestURL());
+                }
+                return jsonResponse;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 
@@ -76,11 +91,11 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         }
 
         @Override
-        protected void onPostExecute(String[] weatherData) {
+        protected void onPostExecute(Movie[] movies) {
             loadingBar.setVisibility(View.INVISIBLE);
-            if (weatherData != null) {
+            if (movies != null) {
                 showMovieDataView();
-                movieListAdapter.setMovieData(weatherData);
+                movieListAdapter.setMovieData(movies);
             } else {
                 showErrorMessage();
             }
