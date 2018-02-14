@@ -3,10 +3,13 @@ package com.example.kilda.movies;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
@@ -61,12 +64,12 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
     }
 
     @Override
-    public void onClick(Movies movie, int movieId) {
+    public void onClick(Movies movie) {
         Intent intent = new Intent(MainActivity.this,MovieDetail.class);
         intent.putExtra("name",movie.getName());
         intent.putExtra("synopsis",movie.getSynopsis());
         intent.putExtra("year",movie.getYear());
-        intent.putExtra("image",movieId);
+        intent.putExtra("img",movie.getImage());
 
         startActivity(intent);
     }
@@ -116,4 +119,21 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         mRecyclerView.setVisibility(View.INVISIBLE);
         errorMsg.setVisibility(View.VISIBLE);
     }
+
+    private Intent createShareForecastIntent() {
+        Intent shareIntent = ShareCompat.IntentBuilder.from(this)
+                .setType("text/plain")
+                .setText(mForecast + FORECAST_SHARE_HASHTAG)
+                .getIntent();
+        return shareIntent;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        MenuItem menuItem = menu.findItem(R.id.);
+        menuItem.setIntent(createShareForecastIntent());
+        return true;
+    }
+
 }
