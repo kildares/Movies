@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
 
 /**
@@ -17,7 +16,7 @@ import com.squareup.picasso.Picasso;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>{
 
     private final MovieListAdapterOnClickHandler movieListAdapterOnClickHandler;
-    private MyMovie[] myMovies;
+    private Movies[] Movies;
 
     public MovieListAdapter(MovieListAdapterOnClickHandler clickHandler)
     {
@@ -26,7 +25,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     public interface MovieListAdapterOnClickHandler
     {
-        void onClick(MyMovie movie);
+        void onClick(Movies movie, int imageId);
     }
 
     @Override
@@ -41,17 +40,19 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     @Override
     public void onBindViewHolder(MovieListViewHolder holder, int position) {
-        String movieImg = myMovies[position].getImage();
-        holder.movieImg.setImageResource();
-        Picasso.with().load();
+        String movieImg = Movies[position].getImage();
+        String movieImgUrl = TmdbApi.getImageUrl(movieImg);
+        Picasso.with(holder.movieImg.getContext()).load(movieImgUrl).into(holder.movieImg);
+
+        holder.movieName.setText(Movies[position].getName());
     }
 
     @Override
     public int getItemCount()
     {
-        if(myMovies == null)
+        if(Movies == null)
             return 0;
-        return myMovies.length;
+        return Movies.length;
     }
 
     public class MovieListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -67,14 +68,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            MyMovie movie = myMovies[adapterPosition];
-            movieListAdapterOnClickHandler.onClick(movie);
+            Movies movie = Movies[adapterPosition];
+            movieListAdapterOnClickHandler.onClick(movie, R.id.view_movie_img);
         }
     }
 
-    public void setMovieData(MyMovie[] myMovieData)
+    public void setMovieData(Movies[] moviesData)
     {
-        this.myMovies = myMovieData;
+        this.Movies = moviesData;
         notifyDataSetChanged();
     }
 

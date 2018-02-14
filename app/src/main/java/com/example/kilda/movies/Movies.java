@@ -4,13 +4,13 @@ package com.example.kilda.movies;
  * Created by kilda on 2/12/2018.
  */
 
-public class MyMovie {
+public class Movies {
     String image;
     String name;
     String year;
     String synopsis;
 
-    public MyMovie(String name, String year, String image, String synopsis)
+    public Movies(String name, String year, String image, String synopsis)
     {
         this.name=name;
         this.year=year;
@@ -32,5 +32,21 @@ public class MyMovie {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
     }
 }

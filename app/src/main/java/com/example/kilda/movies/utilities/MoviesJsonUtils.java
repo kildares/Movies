@@ -1,12 +1,10 @@
 package com.example.kilda.movies.utilities;
 
-import com.example.kilda.movies.MyMovie;
+import com.example.kilda.movies.Movies;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.HttpURLConnection;
 
 /**
  * Created by kilda on 2/13/2018.
@@ -20,14 +18,14 @@ public class MoviesJsonUtils {
     public static final String SYNOPSIS = "overview";
     public static final String IMAGE_PATH = "poster_path";
 
-    public static MyMovie[] parseJSonToMovies(String jsonStr)
+    public static Movies[] parseJSonToMovies(String jsonStr)
     {
         try {
             JSONObject json = new JSONObject(jsonStr);
 
             JSONArray jsonArray = json.getJSONArray(MoviesJsonUtils.results);
 
-            MyMovie[] movies = new MyMovie[jsonArray.length()];
+            Movies[] Movies = new Movies[jsonArray.length()];
 
             for(int i=0 ; i < jsonArray.length() ; i++)
             {
@@ -38,9 +36,9 @@ public class MoviesJsonUtils {
                 String synopsis = jsonObject.getString(MoviesJsonUtils.SYNOPSIS);
                 String image = jsonObject.getString(MoviesJsonUtils.IMAGE_PATH);
 
-                movies[i] = new MyMovie(name, year, image, synopsis);
+                Movies[i] = new Movies(name, year, image, synopsis);
             }
-            return movies;
+            return Movies;
         } catch (JSONException e) {
             e.printStackTrace();
         }

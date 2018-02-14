@@ -2,6 +2,8 @@ package com.example.kilda.movies;
 
 import android.net.Uri;
 
+import com.example.kilda.movies.BuildConfig;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -16,7 +18,7 @@ public class TmdbApi {
     private static final String PAGE = "1";
     private static final String REGION = "Brazil";
     private static final String BASE_URL = "https://api.themoviedb.org/3/movie/";
-    private static final String IMG_SIZE_STANDARD = "w185";
+    private static final String IMG_SIZE_STANDARD = "w185/";
     private static final String API_KEY_URL = "api_key";
     private static final String LANGUAGE_URL = "language";
     private static final String PAGE_URL = "page";
@@ -82,4 +84,7 @@ public class TmdbApi {
         return url;
     }
 
+    public static String getImageUrl(String movieImg) {
+        return "http://image.tmdb.org/t/p/" + IMG_SIZE_STANDARD + movieImg;
+    }
 }

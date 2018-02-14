@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         errorMsg = (TextView) findViewById(R.id.tv_error_loading);
         loadingBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
 
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -58,19 +58,22 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
     }
 
     @Override
-    public void onClick(String movie) {
-
+    public void onClick(Movies movie, int movieId) {
         Intent intent = new Intent(MainActivity.this,MovieDetail.class);
-        intent.putExtra("movie",movie);
+        intent.putExtra("name",movie.getName());
+        intent.putExtra("synopsis",movie.getSynopsis());
+        intent.putExtra("year",movie.getYear());
+        intent.putExtra("image",movieId);
+
         startActivity(intent);
     }
 
-    public class FetchMoviesTask extends AsyncTask<Void, Void,MyMovie[]>
+    public class FetchMoviesTask extends AsyncTask<Void, Void,Movies[]>
     {
         @Override
-        protected MyMovie[] doInBackground(Void... params) {
+        protected Movies[] doInBackground(Void... params) {
 
-            MyMovie[] myMovies = null;
+            Movies[] Movies = null;
             try {
                 String jsonResponse = null;
                 if(TmdbApi.IsTopRated())
@@ -78,12 +81,12 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
                 else{
                     jsonResponse = NetworkUtils.getResponseFromHttpUrl(TmdbApi.buildPopularRequestURL());
                 }
-                myMovies = MoviesJsonUtils.parseJSonToMovies(jsonResponse);
+                Movies = MoviesJsonUtils.parseJSonToMovies(jsonResponse);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return myMovies;
+            return Movies;
         }
 
         @Override
@@ -94,11 +97,11 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         }
 
         @Override
-        protected void onPostExecute(MyMovie[] myMovies) {
+        protected void onPostExecute(Movies[] Movies) {
             loadingBar.setVisibility(View.INVISIBLE);
-            if (myMovies != null) {
+            if (Movies != null) {
                 showMovieDataView();
-                movieListAdapter.setMovieData(myMovies);
+                movieListAdapter.setMovieData(Movies);
             } else {
                 showErrorMessage();
             }

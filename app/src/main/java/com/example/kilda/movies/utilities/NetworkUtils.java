@@ -1,13 +1,8 @@
 package com.example.kilda.movies.utilities;
 
-import android.net.Uri;
-
-import com.example.kilda.movies.TmdbApi;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
