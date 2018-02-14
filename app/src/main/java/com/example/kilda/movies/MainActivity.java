@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         errorMsg = (TextView) findViewById(R.id.tv_error_loading);
         loadingBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this,4);
 
         mRecyclerView.setLayoutManager(layoutManager);
 
