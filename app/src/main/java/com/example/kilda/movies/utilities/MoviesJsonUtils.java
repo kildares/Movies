@@ -17,6 +17,8 @@ public class MoviesJsonUtils {
     public static final String NAME = "title";
     public static final String SYNOPSIS = "overview";
     public static final String IMAGE_PATH = "poster_path";
+    public static final String ID = "id";
+    public static final String AVG = "vote_average";
 
     public static Movies[] parseJSonToMovies(String jsonStr)
     {
@@ -35,8 +37,10 @@ public class MoviesJsonUtils {
                 String year = jsonObject.getString(MoviesJsonUtils.RELEASE_DATE);
                 String synopsis = jsonObject.getString(MoviesJsonUtils.SYNOPSIS);
                 String image = jsonObject.getString(MoviesJsonUtils.IMAGE_PATH);
+                String id = jsonObject.getString(MoviesJsonUtils.ID);
+                String avg = jsonObject.getString(MoviesJsonUtils.AVG);
 
-                Movies[i] = new Movies(name, year, image, synopsis);
+                Movies[i] = new Movies(id,name, year, image, synopsis,avg);
             }
             return Movies;
         } catch (JSONException e) {

@@ -9,13 +9,17 @@ public class Movies {
     String name;
     String year;
     String synopsis;
+    String movieId;
+    String average;
 
-    public Movies(String name, String year, String image, String synopsis)
+    public Movies(String movieId, String name, String year, String image, String synopsis,String average)
     {
+        this.movieId = movieId;
         this.name=name;
         this.year=year;
         this.image=image;
         this.synopsis=synopsis;
+        this.average=average;
     }
 
     public String getImage() {
@@ -48,5 +52,21 @@ public class Movies {
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
+    }
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public String getAverage() {
+        return average;
+    }
+
+    public void setAverage(String average) {
+        this.average = average;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 }

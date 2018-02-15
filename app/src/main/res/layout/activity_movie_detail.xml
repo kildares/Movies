@@ -6,43 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.kilda.movies.MovieDetail">
 
-    <TextView
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/evaluate"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/ib_dislike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/ib_like"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dislike_small" />
-
-    <ImageButton
-        android:id="@+id/ib_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/like_small" />
-
     <ImageView
         android:id="@+id/iv_detail_poster"
         android:layout_width="187dp"
         android:layout_height="181dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/like" />
@@ -52,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="8dp"
         android:text="@string/mockName"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
@@ -66,16 +35,30 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_name"
+        />
+
+    <TextView
+        android:id="@+id/tv_vote_avg"
+        android:text="VOTE AVERAGE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_year"
+        />
 
     <TextView
         android:id="@+id/tv_detail_synopsis"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/mockSynopsis"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_detail_poster" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_poster"
+
+        />
 
 </android.support.constraint.ConstraintLayout>

@@ -3,11 +3,12 @@
     <string name="api_key">YOUR_API_KEY_HERE</string>
     <string name="search_text">Search</string>
     <string name="configure">Configure</string>
-    <string name="movieOrder">Order movie by top rated or popularity:</string>
+    <string name="movieOrder">Order movie by:</string>
     <string name="error">The application encountered an error\nPress Refresh to load again</string>
     <string name="evaluate">Evaluate Movie</string>
     <string name="mockName">MOVIE TITLE</string>
     <string name="mockYear">1999</string>
     <string name="mockSynopsis">HERE COME MY MOVIE SYNOPSIS CONTAINING SOME WORDS WITHOUT SPELLING CORRECTLY I'M DEEPLY SORRY SIR</string>
-
+    <string name="rateGood">Good</string>
+    <string name="rateBad">Bad</string>
 </resources>

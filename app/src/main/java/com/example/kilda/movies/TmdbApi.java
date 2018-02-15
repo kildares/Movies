@@ -71,6 +71,20 @@ public class TmdbApi {
         return url;
     }
 
+    public static URL buildRatePostURL(String id)
+    {
+        Uri builtUri = Uri.parse(BASE_URL + id + "/rating").buildUpon().appendQueryParameter(API_KEY_URL,API_KEY).build();
+        URL url = null;
+        try{
+            url = new URL(builtUri.toString());
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+
     public static URL buildAuthRequest()
     {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon().appendQueryParameter(API_KEY_URL,API_KEY).build();
