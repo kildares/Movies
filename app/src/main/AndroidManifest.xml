@@ -20,7 +20,12 @@
         <activity android:name=".MovieDetail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.example.kilda.movies.MainActivity" />
+        </activity>
+        <activity android:name="com.example.kilda.movies.PreferredConfigurations">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.kilda.movies.MainActivity" />
         </activity>
     </application>
 

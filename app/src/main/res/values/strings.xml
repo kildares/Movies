@@ -3,6 +3,7 @@
     <string name="api_key">YOUR_API_KEY_HERE</string>
     <string name="search_text">Search</string>
     <string name="configure">Configure</string>
+    <string name="movieOrder">Order movie by top rated or popularity:</string>
     <string name="error">The application encountered an error\nPress Refresh to load again</string>
     <string name="evaluate">Evaluate Movie</string>
     <string name="mockName">MOVIE TITLE</string>

@@ -3,16 +3,12 @@ package com.example.kilda.movies;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,6 +16,7 @@ import com.example.kilda.movies.utilities.MoviesJsonUtils;
 import com.example.kilda.movies.utilities.NetworkUtils;
 
 import java.io.IOException;
+import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity implements MovieListAdapter.MovieListAdapterOnClickHandler{
@@ -51,10 +48,16 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        loadMoviesList();
+    }
+
     private void loadMoviesList() {
         showMovieDataView();
-
-        new FetchMoviesTask().execute();
+        URL url = (TmdbApi.IsTopRated()) ? TmdbApi.buildTopRatedRequestURL() : TmdbApi.buildPopularRequestURL();
+        new FetchMoviesTask().execute(url);
     }
 
     private void showMovieDataView()
@@ -74,19 +77,19 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         startActivity(intent);
     }
 
-    public class FetchMoviesTask extends AsyncTask<Void, Void,Movies[]>
+    public class FetchMoviesTask extends AsyncTask<URL, Void,Movies[]>
     {
         @Override
-        protected Movies[] doInBackground(Void... params) {
+        protected Movies[] doInBackground(URL... params) {
 
+            if(params.length==0)
+                return null;
+
+            URL reqUrl = params[0];
             Movies[] Movies = null;
             try {
                 String jsonResponse = null;
-                if(TmdbApi.IsTopRated())
-                    jsonResponse = NetworkUtils.getResponseFromHttpUrl(TmdbApi.buildTopRatedRequestURL());
-                else{
-                    jsonResponse = NetworkUtils.getResponseFromHttpUrl(TmdbApi.buildPopularRequestURL());
-                }
+                jsonResponse = NetworkUtils.getResponseFromHttpUrl(reqUrl);
                 Movies = MoviesJsonUtils.parseJSonToMovies(jsonResponse);
 
             } catch (IOException e) {
@@ -120,20 +123,19 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         errorMsg.setVisibility(View.VISIBLE);
     }
 
-    private Intent createShareForecastIntent() {
-        Intent shareIntent = ShareCompat.IntentBuilder.from(this)
-                .setType("text/plain")
-                .setText(mForecast + FORECAST_SHARE_HASHTAG)
-                .getIntent();
-        return shareIntent;
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);
-        MenuItem menuItem = menu.findItem(R.id.);
-        menuItem.setIntent(createShareForecastIntent());
+        MenuItem menuItem = menu.findItem(R.id.item_configure);
+        Intent intent = new Intent(MainActivity.this,PreferredConfigurations.class);
+        menuItem.setIntent(intent);
         return true;
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        startActivity(item.getIntent());
+        return super.onOptionsItemSelected(item);
+    }
 }
