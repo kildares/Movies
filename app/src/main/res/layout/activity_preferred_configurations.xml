@@ -4,16 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kilda.movies.PreferredConfigurations">
+    tools:context="com.example.kilda.movies.PreferredConfigurations"
+    >
 
     <TextView
         android:id="@+id/tv_movie_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="16dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/configTopBorder"
+        android:textSize="@dimen/configTextSize"
+        android:layout_marginStart="@dimen/leftBorder"
         android:text="@string/movieOrder"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent
 " />
@@ -22,8 +26,12 @@
         android:id="@+id/sp_movie_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/leftBorder"
+        android:layout_marginTop="@dimen/topBorder"
+        android:background="@android:drawable/btn_dropdown"
+        android:fontFamily="sans-serif"
+        android:spinnerMode="dialog"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/tv_movie_order"
         app:layout_constraintTop_toTopOf="parent" />
 

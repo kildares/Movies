@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="detailTitleWidth">136dp</dimen>
+    <dimen name="leftBorder">4dp</dimen>
+    <dimen name="topBorder">8dp</dimen>
+    <dimen name="leftBorderFromPoster">8dp</dimen>
+    <dimen name="RightBorder">8dp</dimen>
+    <dimen name="bottomBorder">8dp</dimen>
+    <dimen name="movieTitle">12sp</dimen>
+    <dimen name="movieTitleDetail">18sp</dimen>
+    <dimen name="movieSinopsysDetail">16sp</dimen>
+    <dimen name="moviePosterWidth">187dp</dimen>
+    <dimen name="moviePosterHeight">181dp</dimen>
+    <dimen name="configTextSize">18sp</dimen>
+    <dimen name="configTopBorder">16dp</dimen>
+
+</resources>

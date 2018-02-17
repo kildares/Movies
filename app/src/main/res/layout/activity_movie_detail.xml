@@ -4,61 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kilda.movies.MovieDetail">
+    tools:context="com.example.kilda.movies.MovieDetail"
+    android:background="@color/black">
 
     <ImageView
         android:id="@+id/iv_detail_poster"
-        android:layout_width="187dp"
-        android:layout_height="181dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:contentDescription="@string/description_detail_poster"
+        android:layout_width="@dimen/moviePosterWidth"
+        android:layout_height="@dimen/moviePosterHeight"
+        android:layout_marginStart="@dimen/leftBorder"
+        android:layout_marginTop="@dimen/topBorder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/like" />
 
     <TextView
         android:id="@+id/tv_detail_name"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/detailTitleWidth"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/RightBorder"
+        android:layout_marginStart="@dimen/leftBorderFromPoster"
+        android:layout_marginTop="@dimen/topBorder"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/movieTitleDetail"
         android:text="@string/mockName"
-        android:textSize="18dp"
+        android:textSize="@dimen/movieTitleDetail"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_detail_year"
+        android:id="@+id/tv_release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mockYear"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:text="@string/releaseDateDetail"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/movieTitleDetail"
+        android:layout_marginStart="@dimen/leftBorderFromPoster"
+        android:layout_marginEnd="@dimen/RightBorder"
+        android:layout_marginTop="@dimen/topBorder"
         app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_name"
         />
-
     <TextView
-        android:id="@+id/tv_vote_avg"
-        android:text="VOTE AVERAGE"
+        android:id="@+id/tv_detail_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/movieTitleDetail"
+        android:layout_marginStart="@dimen/leftBorderFromPoster"
+        android:layout_marginEnd="@dimen/RightBorder"
+        android:layout_marginTop="@dimen/topBorder"
+        app:layout_constraintStart_toEndOf="@+id/tv_release"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_name"
+            />
+
+    <TextView
+        android:id="@+id/tv_rate"
+        android:text="@string/rateDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/movieTitleDetail"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/leftBorderFromPoster"
+        android:layout_marginTop="@dimen/topBorder"
+        android:layout_marginEnd="@dimen/RightBorder"
         app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_year"
+        />
+<TextView
+        android:id="@+id/tv_vote_avg"
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/movieTitleDetail"
+        android:layout_marginStart="@dimen/leftBorderFromPoster"
+        android:layout_marginTop="@dimen/topBorder"
+        android:layout_marginEnd="@dimen/RightBorder"
+        app:layout_constraintStart_toEndOf="@+id/tv_rate"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_year"
         />
 
     <TextView
         android:id="@+id/tv_detail_synopsis"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="@dimen/topBorder"
+        android:fontFamily="sans-serif"
+        android:textSize="@dimen/movieSinopsysDetail"
         android:text="@string/mockSynopsis"
-        app:layout_constraintTop_toBottomOf="@+id/iv_detail_poster"
-
-        />
+        android:textColor="@color/movieTitleDetail"
+        android:layout_marginStart="@dimen/leftBorderFromPoster"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_poster" />
 
 </android.support.constraint.ConstraintLayout>

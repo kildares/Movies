@@ -12,13 +12,13 @@ import org.json.JSONObject;
 
 public class MoviesJsonUtils {
 
-    public static final String results = "results";
-    public static final String RELEASE_DATE = "release_date";
-    public static final String NAME = "title";
-    public static final String SYNOPSIS = "overview";
-    public static final String IMAGE_PATH = "poster_path";
-    public static final String ID = "id";
-    public static final String AVG = "vote_average";
+    private static final String results = "results";
+    private static final String RELEASE_DATE = "release_date";
+    private static final String NAME = "title";
+    private static final String SYNOPSIS = "overview";
+    private static final String IMAGE_PATH = "poster_path";
+    private static final String ID = "id";
+    private static final String AVG = "vote_average";
 
     public static Movies[] parseJSonToMovies(String jsonStr)
     {

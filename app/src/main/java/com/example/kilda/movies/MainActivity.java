@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_movies);
-        errorMsg = (TextView) findViewById(R.id.tv_error_loading);
-        loadingBar = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        mRecyclerView = findViewById(R.id.recyclerview_movies);
+        errorMsg = findViewById(R.id.tv_error_loading);
+        loadingBar = findViewById(R.id.pb_loading_indicator);
 
         GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this,4);
 
@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
 
     public class FetchMoviesTask extends AsyncTask<URL, Void,Movies[]>
     {
+
         @Override
         protected Movies[] doInBackground(URL... params) {
 
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
             URL reqUrl = params[0];
             Movies[] Movies = null;
             try {
-                String jsonResponse = null;
+                String jsonResponse;
                 jsonResponse = NetworkUtils.getResponseFromHttpUrl(reqUrl);
                 Movies = MoviesJsonUtils.parseJSonToMovies(jsonResponse);
 
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         }
     }
 
-    public void showErrorMessage()
+    private void showErrorMessage()
     {
         mRecyclerView.setVisibility(View.INVISIBLE);
         errorMsg.setVisibility(View.VISIBLE);

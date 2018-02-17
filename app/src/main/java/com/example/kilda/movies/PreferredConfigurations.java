@@ -16,7 +16,7 @@ public class PreferredConfigurations extends AppCompatActivity implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred_configurations);
 
-        spMovieOrder = (Spinner) findViewById(R.id.sp_movie_order);
+        spMovieOrder = findViewById(R.id.sp_movie_order);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.movies_order,android.R.layout.simple_spinner_item);
 

@@ -5,12 +5,12 @@ package com.example.kilda.movies;
  */
 
 public class Movies {
-    String image;
-    String name;
-    String year;
-    String synopsis;
-    String movieId;
-    String average;
+    private String image;
+    private String name;
+    private String year;
+    private String synopsis;
+    private String movieId;
+    private String average;
 
     public Movies(String movieId, String name, String year, String image, String synopsis,String average)
     {

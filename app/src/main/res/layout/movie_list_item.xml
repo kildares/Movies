@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ABCDEF"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="bottom"
+    android:layout_marginStart="@dimen/leftBorder"
+    android:layout_marginEnd="@dimen/leftBorder"
+    android:layout_marginTop="@dimen/leftBorder"
+    android:layout_marginBottom="@dimen/leftBorder"
+    android:background="@android:color/holo_orange_light"
     >
 
 
@@ -12,26 +16,33 @@
             android:id="@+id/tv_movie_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
+            android:fontFamily="sans-serif"
             android:text="@string/mockName"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:textColor="@color/movieTitle"
-            android:textSize="12dp"
+            android:textSize="@dimen/movieTitle"
+            android:textStyle="bold"
+            android:background="@android:color/holo_orange_light"
+            app:layout_constraintBottom_toTopOf="@+id/view_movie_img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <ImageView
             android:id="@+id/view_movie_img"
+            android:contentDescription="@string/description_movie_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginBottom="@dimen/bottomBorder"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_name"
-            app:srcCompat="@drawable/like" />
+            app:srcCompat="@drawable/like"
+
+            />
 
 
 </android.support.constraint.ConstraintLayout>
