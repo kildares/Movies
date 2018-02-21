@@ -106,9 +106,25 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);
-        MenuItem menuItem = menu.findItem(R.id.item_configure);
-        Intent intent = new Intent(MainActivity.this,PreferredConfigurations.class);
-        menuItem.setIntent(intent);
+        MenuItem menuTopRated = menu.findItem(R.id.item_top_rated);
+        menuTopRated.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                TmdbApi.SetTopRated(true);
+                loadMoviesList();
+                return true;
+            }
+        });
+
+        MenuItem menuPopularity = menu.findItem(R.id.item_popularity);
+        menuPopularity.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                TmdbApi.SetTopRated(false);
+                loadMoviesList();
+                return true;
+            }
+        });
         return true;
     }
 

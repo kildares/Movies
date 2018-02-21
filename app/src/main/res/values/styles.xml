@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ApplicationTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/movieTitleDetail</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <!--<item name="android:spinnerDropDownItemStyle">@style/SpinnerTheme</item>-->
+    </style>
+
+    <!--<style name="SpinnerTheme" parent = "Theme.AppCompat.Light.DarkActionBar">-->
+        <!--<item name="android:textColor">@color/SpinnerTextColor</item>-->
+    <!--</style>-->
 </resources>

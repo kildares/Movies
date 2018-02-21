@@ -9,9 +9,16 @@
     >
 
     <item
-        android:id="@+id/item_configure"
+        android:id="@+id/item_top_rated"
         android:orderInCategory="1"
-        android:title="@string/configure"
+        android:title="@string/loadTopRated"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/item_popularity"
+        android:orderInCategory="2"
+        android:title="@string/loadPopularity"
         app:showAsAction="ifRoom"
         />
 
