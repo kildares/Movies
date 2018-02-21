@@ -48,6 +48,14 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
 
     }
 
+    public ProgressBar getLoadingBar() {
+        return loadingBar;
+    }
+
+    public void setLoadingBar(ProgressBar loadingBar) {
+        this.loadingBar = loadingBar;
+    }
+
     @Override
     protected void onPostResume() {
         super.onPostResume();
@@ -60,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         {
             showMovieDataView();
             URL url = (TmdbApi.IsTopRated()) ? TmdbApi.buildTopRatedRequestURL() : TmdbApi.buildPopularRequestURL();
-            new FetchMoviesTask().execute(url);
+            new FetchMoviesTask(this).execute(url);
         }
         else{
             showErrorMessage();
@@ -68,7 +76,9 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
 
     }
 
-    private void showMovieDataView()
+
+
+    public void showMovieDataView()
     {
         errorMsg.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.VISIBLE);
@@ -82,51 +92,15 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         startActivity(intent);
     }
 
-    public class FetchMoviesTask extends AsyncTask<URL, Void,Movies[]>
-    {
-
-        @Override
-        protected Movies[] doInBackground(URL... params) {
-
-            if(params.length==0)
-                return null;
-
-            URL reqUrl = params[0];
-            Movies[] Movies = null;
-            try {
-                String jsonResponse;
-                jsonResponse = NetworkUtils.getResponseFromHttpUrl(reqUrl);
-                Movies = MoviesJsonUtils.parseJSonToMovies(jsonResponse);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return Movies;
-        }
-
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-            loadingBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected void onPostExecute(Movies[] Movies) {
-            loadingBar.setVisibility(View.INVISIBLE);
-            if (Movies != null) {
-                showMovieDataView();
-                movieListAdapter.setMovieData(Movies);
-            } else {
-                showErrorMessage();
-            }
-        }
-    }
-
-    private void showErrorMessage()
+    public void showErrorMessage()
     {
         mRecyclerView.setVisibility(View.INVISIBLE);
         errorMsg.setVisibility(View.VISIBLE);
+    }
+
+    public void setMovieData(Movies[] movies)
+    {
+        movieListAdapter.setMovieData(movies);
     }
 
     @Override
