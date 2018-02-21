@@ -55,9 +55,17 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
     }
 
     private void loadMoviesList() {
-        showMovieDataView();
-        URL url = (TmdbApi.IsTopRated()) ? TmdbApi.buildTopRatedRequestURL() : TmdbApi.buildPopularRequestURL();
-        new FetchMoviesTask().execute(url);
+
+        if(NetworkUtils.isNetworkConnected(this))
+        {
+            showMovieDataView();
+            URL url = (TmdbApi.IsTopRated()) ? TmdbApi.buildTopRatedRequestURL() : TmdbApi.buildPopularRequestURL();
+            new FetchMoviesTask().execute(url);
+        }
+        else{
+            showErrorMessage();
+        }
+
     }
 
     private void showMovieDataView()
@@ -69,12 +77,7 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
     @Override
     public void onClick(Movies movie) {
         Intent intent = new Intent(MainActivity.this,MovieDetail.class);
-        intent.putExtra("name",movie.getName());
-        intent.putExtra("synopsis",movie.getSynopsis());
-        intent.putExtra("year",movie.getYear());
-        intent.putExtra("img",movie.getImage());
-        intent.putExtra("id",movie.getMovieId());
-        intent.putExtra("avg",movie.getAverage());
+        intent.putExtra("movie",movie);
 
         startActivity(intent);
     }

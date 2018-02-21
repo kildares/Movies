@@ -4,7 +4,7 @@
     <string name="search_text">Search</string>
     <string name="configure">Configure</string>
     <string name="movieOrder">Order movie by:</string>
-    <string name="error">The application encountered an error\nPress Refresh to load again</string>
+    <string name="error">The application encountered an error.\nPlease check if you have internet access\nand restart the application</string>
     <string name="evaluate">Evaluate Movie</string>
     <string name="mockName">MOVIE TITLE</string>
     <string name="mockYear">1999</string>

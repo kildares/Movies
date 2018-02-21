@@ -1,6 +1,7 @@
 package com.example.kilda.movies;
 
 import android.content.Intent;
+import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -34,20 +35,15 @@ public class MovieDetail extends AppCompatActivity{
         Intent intent = getIntent();
         Bundle bdl = intent.getExtras();
         try{
-            String name = bdl.getString("name");
-            String synopsis = bdl.getString("synopsis");
-            String year = bdl.getString("year");
-            String img = bdl.getString("img");
-            String id = bdl.getString("id");
-            String avg = bdl.getString("avg");
-            this.tvName.setText(name);
-            this.tvYear.setText(formatTvYear(year));
-            this.tvSynopsis.setText(synopsis);
-            this.tvAverage.setText(avg);
+            Movies mv = bdl.getParcelable("movie");
+            this.tvName.setText(mv.getName());
+            this.tvYear.setText(formatTvYear(mv.getYear()));
+            this.tvSynopsis.setText(mv.getSynopsis());
+            this.tvAverage.setText(mv.getAverage());
 
-            detailedMovie = new Movies(id,year,year,img,synopsis,avg);
+            this.detailedMovie = mv;
 
-            Picasso.with(MovieDetail.this).load(TmdbApi.getImageUrl(img)).into(this.MovieImg);
+            Picasso.with(MovieDetail.this).load(TmdbApi.getImageUrl(this.detailedMovie.getImage())).into(this.MovieImg);
         }catch(NullPointerException e){
             e.printStackTrace();
             Intent intent1 = new Intent(MovieDetail.this,MainActivity.class);
